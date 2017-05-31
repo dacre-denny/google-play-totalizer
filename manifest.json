@@ -1,22 +1,30 @@
 {
-  "name": "Hello World!",
-  "description": "My first Chrome App.",
+  "name": "Play Console Totalizer",
+  "description": "Would/'t it be cool if you could total your app installs, automagically?",
   "version": "0.1",
   "manifest_version": 2,
-    "background": {
+  "background": {
     "persistent": false,
-      "scripts": ["background.js"]
-    },
-     "permissions": [
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "permissions": [
     "tabs"
   ],
-   "content_scripts": [{
-        "matches":    ["*://play.google.com/*"],
-        "js":         ["content.js"],
-        "run_at": "document_end"
-    }],
-  "browser_action": {
-    "title": "Test"
-  },
-  "icons": { "16": "calculator-16.png", "128": "calculator-128.png" }
+  "content_scripts": [
+    {
+      "matches": [
+        "*://play.google.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "icons": {
+    "16": "totalizer-16.png",
+    "128": "totalizer-128.png"
+  }
 }

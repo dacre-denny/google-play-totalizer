@@ -1,52 +1,74 @@
 
- 
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)    {
-    
-    var table = document.querySelector('[role=article] table');
-    var th = table.querySelectorAll('thead tr th');
-    var tr = table.querySelectorAll('tbody tr');
-    
-var col = -1;
-for(var i = 0; i < th.length; i++) {
- if(th[i].innerText.match(/active\/total/gi)) {
-col = i;
-break;
- }
-}
 
-if(col != -1) {
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+debugger
+    const parsePrice = str => {
+        
+        if(!str) return
 
-var totalActive = 0;
-var totalEver = 0;
-
-    for(var j =0; j<tr.length; j ++) {
-
-        var cell = tr[j].querySelectorAll('td')[col];
-        if(!cell) continue;
-        var txt = cell.innerText;
- 
-        var values = txt
-        .replace(',', '')
-        .split(/\//gi)
-        .map(v => v.trim())
-        .map(v => parseInt(v))
-
-        totalActive += values[0]
-        totalEver += values[1]
-
+        const m = str.match(/[0-9\.]+/i)
+        return parseFloat(m)
     }
-}
-    // console.log(request.command);
 
-    // var div = document.createElement('div');
-    // var label = document.createElement('span');
-    // label.textContent = "Hello, world";
-    // div.appendChild(label);
-    // document.body.appendChild(div);
+    const parseInstall = str => {
 
-        alert('Total active:' + totalActive)
-        alert('Total ever:' + totalEver)
+        if(!str) return
+            
+        const m = str.replace(',', '').match(/[0-9,]+/gi)
+        if(!m) return
+        
+        return m
+        .map(s => parseFloat(s))
+        .map(s => isNaN(s) ? 0 : s)
+    }
+
+    const table = document.querySelector('[role=article] table');
+    var installs = -1, 
+        price = -1;
+    var totalActive = 0;
+    var totalEver = 0;
+    var i = 0
+    
+    table.querySelectorAll('thead tr th').forEach(th => {
+        
+        const innerText = th.innerText
+
+        if (innerText.match(/active\/total/gi)) 
+            installs = i;
+
+        if (innerText.match(/price/gi))
+            price = i;
+
+        i++;
+    });
+        
+    table.querySelectorAll('tbody tr').forEach(tr => {
+        
+        var tds = tr.querySelectorAll('td');
+
+        if(price != -1) {
+
+            const td = tds[price]
+            const str = td ? td.innerText : ''
+            const price = parsePrice(str)
+
+            if(isNaN(price)) continue
+        }
+
+        if(installs != -1) {
+
+            const td = tds[installs]
+            const str = td ? td.innerText : ''
+            const values = parseInstall(str)
+
+            totalActive += values[0]
+            totalEver += values[1]
+        }
+    });
+
+    console.log('Total active:' + totalActive)
+    console.log('Total ever:' + totalEver)
 
 
-    sendResponse({result: "success"});
+    sendResponse({ result: "success" });
 });
