@@ -72,6 +72,8 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         totalDownloads += appDownloads
         totalInstalls += appInstalls
     });
+
+    totalEarnings = totalEarnings.toFixed(2)
     
     sendResponse({ 
         totalEarnings,

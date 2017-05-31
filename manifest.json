@@ -3,12 +3,7 @@
   "description": "Would't it be cool if you could total your app installs, automagically?",
   "version": "0.1",
   "manifest_version": 2,
-  "background": {
-    "persistent": false,
-    "scripts": [
-      "background.js"
-    ]
-  },
+ 
   "permissions": [
     "tabs"
   ],
@@ -24,7 +19,7 @@
     }
   ],
   "browser_action": {
-    "title": "Test"
+    "default_popup": "popup.html"
   },
   "icons": {
     "16": "totalizer-16.png",
