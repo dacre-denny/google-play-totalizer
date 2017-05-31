@@ -11,7 +11,9 @@ if(!tabs.length) return
 
           chrome.tabs.sendMessage(tabs[0].id, {command: "append"}, function(response) {
      
-              console.log(response.result);
+              alert(response.totalEarnings);
+              alert(response.totalDownloads);
+              alert(response.totalInstalls);
           });
       });
   });

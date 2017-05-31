@@ -1,74 +1,81 @@
+const parsePrice = str => {
+    
+    if(!str) return
 
+    const m = str.match(/[0-9\.]+/i)
+    return parseFloat(m)
+}
+
+const parseInstall = str => {
+
+    if(!str) return
+        
+    const m = str.replace(',', '').match(/[0-9,]+/gi)
+    if(!m) return
+    
+    return m
+    .map(s => parseFloat(s))
+    .map(s => isNaN(s) ? 0 : s)
+}
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-debugger
-    const parsePrice = str => {
-        
-        if(!str) return
-
-        const m = str.match(/[0-9\.]+/i)
-        return parseFloat(m)
-    }
-
-    const parseInstall = str => {
-
-        if(!str) return
-            
-        const m = str.replace(',', '').match(/[0-9,]+/gi)
-        if(!m) return
-        
-        return m
-        .map(s => parseFloat(s))
-        .map(s => isNaN(s) ? 0 : s)
-    }
-
+    
     const table = document.querySelector('[role=article] table');
-    var installs = -1, 
-        price = -1;
-    var totalActive = 0;
-    var totalEver = 0;
-    var i = 0
+    var colInstall = ''
+    var colPrice = ''
+    var idx = 0
     
     table.querySelectorAll('thead tr th').forEach(th => {
         
         const innerText = th.innerText
 
         if (innerText.match(/active\/total/gi)) 
-            installs = i;
+            colInstall = idx;
 
         if (innerText.match(/price/gi))
-            price = i;
+            colPrice = idx;
 
-        i++;
+        idx++;
     });
         
+    var totalInstalls = 0
+    var totalDownloads = 0
+    var totalEarnings = 0
+
     table.querySelectorAll('tbody tr').forEach(tr => {
         
         var tds = tr.querySelectorAll('td');
 
-        if(price != -1) {
+        var appPrice = 0
+        var appInstalls = 0
+        var appDownloads = 0
 
-            const td = tds[price]
-            const str = td ? td.innerText : ''
-            const price = parsePrice(str)
+        const cellPrice = (colPrice != '') ? tds[colPrice] : ''
+        const cellInstall = (colInstall != '') ? tds[colInstall] : ''
 
-            if(isNaN(price)) continue
+        if(cellPrice) {
+
+            const price = parsePrice(cellPrice.innerText)
+
+            appPrice = isNaN(price) ? 0 : price
         }
 
-        if(installs != -1) {
+        if(cellInstall) {
 
-            const td = tds[installs]
-            const str = td ? td.innerText : ''
-            const values = parseInstall(str)
+            const values = parseInstall(cellInstall.innerText)
 
-            totalActive += values[0]
-            totalEver += values[1]
+            appInstalls = values[0]
+            appDownloads = values[1]
         }
+
+        totalEarnings += (appDownloads * appPrice)
+        totalDownloads += appDownloads
+        totalInstalls += appInstalls
     });
-
-    console.log('Total active:' + totalActive)
-    console.log('Total ever:' + totalEver)
-
-
-    sendResponse({ result: "success" });
+    
+    sendResponse({ 
+        totalEarnings,
+        totalDownloads,
+        totalInstalls
+     });
 });
