@@ -10,8 +10,9 @@ Introducing google-play-totalizer.
 
 The new and imrpoved Google Play Console has lots of [Material goodness](http://www.androidpolice.com/2017/04/19/new-google-play-console-brings-developer-management-material-era/), but is still missing some useful stuff. 
 
-The table listing apps on the All Applications page doesn't include a summation of total sales, total installs, and/or total revenue across all apps. 
-google-play-totalizer sums these up in a super simple little popover:
+The table listing apps on the All Applications page doesn't include a summation of total sales, total installs, and/or total revenue across all apps - this makes me sad.
+
+**google-play-totalizer** sums these up in a super simple little popover:
 
 ![Screenshot](https://raw.githubusercontent.com/mooce/google-play-totalizer/master/doc/screenshot-2.jpg)
 
