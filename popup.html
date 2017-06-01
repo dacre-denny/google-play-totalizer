@@ -1,67 +1,72 @@
 <!doctype html>
 <html>
+  <head>
+    <title>Play Console Totalizer</title>
+    <!-- Style definition, give this thing some personality! -->
+    <style>
+      body {
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: 100%;
+        margin: 0;
+        padding: 0.5rem;
+        background: linear-gradient(135deg, #00ff9c, #00ffe4);
+        min-width: 22rem;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: black;
+        line-height: 1.5;
+        text-shadow: 1px 1px 0px #00e0c1;
+      }
 
-<head>
-  <title>Play Console Totalizer</title>
-  <style>
-    body {
-      font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-      font-size: 100%;
-      margin: 0;
-      padding: 0.5rem;
-      background: linear-gradient(135deg, #00ff9c, #00ffe4);
-      min-width: 22rem;
-      text-transform: uppercase;
-      font-weight: bold;
-      color: black;
-          line-height: 1.5;
-      text-shadow: 1px 1px 0px #00e0c1;
-    }
+      p, small {
+        margin: 0;
+        padding: 0.5rem;
+        font-size: .7rem;
+      }
 
-    p {
-      margin: 0;
-      padding: 0.5rem;
-      font-size: .7rem;
-    }
+      small {
+        opacity: 0.25;
+      }
 
-    div {
-      padding: 0.5rem;
-    }
+      div {
+        padding: 0.5rem;
+      }
 
-    b {
-      color: white;
-      text-shadow: 1px 1px 0px #00c789;
-    }
+      b {
+        color: white;
+        text-shadow: 1px 1px 0px #00c789;
+      }
 
-    span {
-      float: right;
-    }
-    a {
-      color:white;
-      background: rgba(0,0,0,0.1);
-      display: block;
-      margin-top: 0.5rem;
-      padding: .5rem;
-      text-align: center;
-    }
-  </style>
+      span {
+        float: right;
+      }
 
-  <script src="popup.js"></script>
-</head>
+      a {
+        color: white;
+        background: rgba(0, 0, 0, 0.1);
+        display: block;
+        margin-top: 0.5rem;
+        padding: .5rem;
+        text-align: center;
+      }
+    </style>
 
-<body>
-  <p>Go to All Applications on your Google Play Console.<br/>
-  Already there? Here's what I found:</p>
-  <div>
-    <b>Total Earnings</b><span id="earning">-</span>
-  </div>
-  <div>
-    <b>Total Installs</b><span id="installs">-</span>
-  </div>
-  <div>
-    <b>Total Downloads</b><span id="downloads">-</span>
-  </div>
-  <p style="opacity:0.25">mooce.co.nz</p>
-</body>
+    <!-- Pull in and run view logic -->
+    <script src="popup.js"></script>
+  </head>
 
+  <body>
+    <!-- What's a view without it's markup? -->
+    <p>Go to All Applications on your Google Play Console.<br/> Already there? Here's what I found:</p>
+    <div>
+      <b>Total Earnings</b><span id="earning">-</span>
+    </div>
+    <div>
+      <b>Total Installs</b><span id="installs">-</span>
+    </div>
+    <div>
+      <b>Total Downloads</b><span id="downloads">-</span>
+    </div>
+    <small>mooce.co.nz</small>
+  </body>
 </html>

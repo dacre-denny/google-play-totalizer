@@ -1,12 +1,13 @@
 {
   "name": "Play Console Totalizer",
   "description": "Would't it be cool if you could total your app installs, automagically?",
-  "version": "0.1",
+  "version": "0.2",
   "manifest_version": 2,
  
   "permissions": [
     "tabs"
   ],
+
   "content_scripts": [
     {
       "matches": [
@@ -18,9 +19,11 @@
       "run_at": "document_end"
     }
   ],
+
   "browser_action": {
     "default_popup": "popup.html"
   },
+  
   "icons": {
     "16": "totalizer-16.png",
     "128": "totalizer-128.png"

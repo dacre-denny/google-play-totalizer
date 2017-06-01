@@ -2,7 +2,7 @@
 
 ![google-play-totalizer](https://raw.githubusercontent.com/mooce/google-play-totalizer/master/doc/promo.jpg)
 
-Wouldn't it be cool if you could sum up total installs in the Google Play Developer console?
+Wouldn't it be cool if you could sum up total installs in the Google Play Developer console, automagically?
 
 **Introducing google-play-totalizer**
 

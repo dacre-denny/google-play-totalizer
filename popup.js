@@ -1,5 +1,3 @@
- 
-
 document.addEventListener('DOMContentLoaded', function() {
 
   chrome.tabs.query({
@@ -8,12 +6,18 @@ document.addEventListener('DOMContentLoaded', function() {
   }, function(tabs) {
     
     var tab = tabs[0];
-    
+    if(!tab) return
+
+    //Run content script on current tab
     chrome.tabs.sendMessage(tab.id, {command: "append"}, function(response) {
       
-      document.getElementById('earning').innerText = response.totalEarnings
-      document.getElementById('installs').innerText = response.totalInstalls
-      document.getElementById('downloads').innerText = response.totalDownloads
+      //Protect against undefined error
+      response = response || {}
+
+      //Update the view with totals recieved from content script
+      document.getElementById('earning').innerText = response.totalEarnings || 'Not found'
+      document.getElementById('installs').innerText = response.totalInstalls || 'Not found'
+      document.getElementById('downloads').innerText = response.totalDownloads || 'Not found'
       
     });
     
