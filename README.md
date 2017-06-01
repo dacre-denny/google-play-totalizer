@@ -4,7 +4,7 @@
 
 Wouldn't it be cool if you could sum up total installs in the Google Play Developer console?
 
-Introducing google-play-totalizer. 
+**Introducing google-play-totalizer**
 
 ## Why?
 
