@@ -20,4 +20,7 @@ As you might expect, it'll exlude "Free" apps from the total revenue result.
 
 ## Usage?
 
-Once installed, visit the Google Play Console and click the Totalizer icon. All going well, you'll get the totalized goodness.
+Once downloaded, [and installed](https://support.google.com/chrome/a/answer/2714278?hl=en), visit the [Google Play Console](https://play.google.com/apps/publish/) and click the Totalizer icon. 
+All going well, you'll get the totalized goodness.
+
+Looking for it on the Web Store? You won't find it there - [private installs only](https://support.google.com/chrome/a/answer/2714278?hl=en) for now!
