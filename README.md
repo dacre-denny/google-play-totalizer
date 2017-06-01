@@ -14,7 +14,7 @@ The table listing apps on the All Applications page doesn't include a summation 
 
 **google-play-totalizer** sums these up in a super simple little popover:
 
-![Screenshot](https://raw.githubusercontent.com/mooce/google-play-totalizer/master/doc/screenshot-2.jpg)
+![Screenshot](https://raw.githubusercontent.com/mooce/google-play-totalizer/master/doc/screenshot-2.jpg)  
 
 As you might expect, it'll exlude "Free" apps from the total revenue result.
 
