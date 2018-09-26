@@ -1,3 +1,7 @@
+## No longer supported
+
+This extension no longer works following recent updates by Google to the Play Developer console :(
+
 # google-play-totalizer
 
 ![google-play-totalizer](https://raw.githubusercontent.com/mooce/google-play-totalizer/master/doc/promo.jpg)
